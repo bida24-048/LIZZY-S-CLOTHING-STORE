@@ -154,7 +154,7 @@
             </select>
           </div>
              <!Add data attribute to store product details>
-          <button class="btn btn-primary add-to-cart" data-product="Vintage skirt" data-price="400">Add to cart</button>
+          <button class="button" onclick="addToCart('Vintage skirt')">Add Vintage skirt</button>
         </div>
       </div>
     </div>
@@ -190,7 +190,7 @@
                 </select>
               </div>
                 <!Add data attribute to store product details>
-          <button class="btn btn-primary add-to-cart" data-product="Lady shorts" data-price="100">Add to cart</button>
+          <button class="button" onclick="addToCart('Lady shorts')">Add Lady shorts</button>
         </div>
       </div>
     </div>
@@ -215,8 +215,8 @@
               <option value="XL">Extra Large (XL)</option>
             </select>
           </div>
-               <!Add data attribute to store product details>
-         <button class="btn btn-primary add-to-cart" data-product="Men shorts" data-price="200">Add to cart</button>
+               
+         <button class="button" onclick="addToCart('Men shorts')">Add Men shorts</button>
         </div>
       </div>
     </div>
@@ -250,8 +250,7 @@
                <option value="black">Black</option>
              </select>
            </div>
-              <!Add data attribute to store product details>
-           <button class="btn btn-primary add-to-cart" data-product="Lady formal suit" data-price="1000">Add to cart</button>
+              <button class="button" onclick="addToCart('Lady fromal suit')">Add Lady suit</button>
         </div>
       </div>
     </div>
@@ -286,8 +285,8 @@
             <option value="black">Black</option>
            </select>
           </div>
-              <!Add data attribute to store product details>
-          <button class="btn btn-primary add-to-cart" data-product="Men formal suit" data-price="1200">Add to cart</button>
+              
+          <button class="button" onclick="addToCart('Men suit')">Add Men suit</button>
         </div>
       </div>
     </div>
@@ -304,8 +303,8 @@
           <h5 class="card-title">Headscarf</h5>
           <p class="card-text">Style your outfit with a headscarf</p>
           <p class="price">P25</p>
-              <!Add data attribute to store product details>
-          <button class="btn btn-primary add-to-cart" data-product="Headscarf" data-price="25">Add to cart</button>
+              
+          <button class="button" onclick="addToCart('Headscarf')">Add Headscarf</button>
         </div>
       </div>
     </div>
@@ -313,31 +312,10 @@
 </div>
   <p class="mt-3"Visit<a href="shop.jpg">Shop</a>to see more available clothing</p>
   <script>
-            // Initialize cart array to store added items
-            let cart = [];
-            let cartLink = document.getElementById('cart-link');
-
-            // Function to update the cart UI
-            function updateCartUI() {
-                cartLink.textContent = `Cart (${cart.length})`;
-            }
-
-            // Add event listeners to all "Add to Cart" buttons
-            document.querySelectorAll('.add-to-cart').forEach(button => {
-                button.addEventListener('click', () => {
-                    let productName = button.getAttribute('data-product');
-                    let productPrice = button.getAttribute('data-price');
-                    
-                    // Add the item to the cart
-                    cart.push({ name: productName, price: parseFloat(productPrice) });
-
-                    // Update the cart display
-                    updateCartUI();
-
-                    alert(`${productName} has been added to your cart!`);
-                });
-            });
-        </script>
+    function addToCart(item){
+      alert(item+"has been added to cart.");
+    }
+  </script>
     </main>
 
     <footer>
