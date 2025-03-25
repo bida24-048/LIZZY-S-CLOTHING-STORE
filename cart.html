@@ -66,8 +66,9 @@
       </div>
     </div>
   </div>
-</div>
-<script>
+         </div>
+      
+   <script>
   // Add event listeners to all "Place your order" buttons
   document.querySelectorAll('.place-your-order').forEach(button => {
     button.addEventListener('click', (e) => {
@@ -81,10 +82,13 @@
       const queryString = `product=${encodeURIComponent(productTitle)}&size=${encodeURIComponent(size)}&color=${encodeURIComponent(color)}`;
 
       // Redirect to the new page with product details
-      window.location.href = `contact.html?${queryString}`;
+      window.location.href =`contact.html?${queryString}`;
     });
   });
 </script>
+   
+
+    
 
         
         <!--Bootstrap JS and dependencies-->
