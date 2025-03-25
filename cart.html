@@ -42,48 +42,12 @@
     <main class="container my-5">
         
         <p>This is your clothing collection</p>
-        <script>
-  // Parse the query string from the URL
-  const params = new URLSearchParams(window.location.search);
-  const product = params.get('product');
-  const size = params.get('size');
-  const color = params.get('color');
-
-  // Display the product details
-  document.getElementById('cart-details').innerHTML = `
-    <h2>Added to Cart</h2>
-    <p>Product: ${product}</p>
-    <p>Size: ${size}</p>
-    <p>Color: ${color}</p>
-  `;
-</script>
-
-<!-- Add this in cart.html -->
-<div id="cart-details"></div>
-
+        <div id="cart">
+  <h2>Shopping Cart</h2>
+  <div id="cart-items"></div>
+    
+        <p class="mt-3">Visit<a href="contact.html">Contact</a>to place your order</p>
         
-
-         <div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <div class="card">
-        <img src="tshirt.jpg" class="card-img-top" alt="Plain t-shirt">
-        <div class="card-body">
-          <h5 class="card-title">Plain T-shirt</h5>
-          <p class="card-text">Comfortable t-shirt for casual wear.</p>
-          <p class="price">P80.00</p>
-          <div class="size">
-            <label for="t-shirt">Size:</label>
-            <select id="t-shirt">
-              <option value="S">Small (S)</option>
-              <option value="M">Medium (M)</option>
-              <option value="L">Large (L)</option>
-              <option value="XL">Extra Large (XL)</option>
-            </select>
-              <p class="mt-3">Visit<a href="contact.html">Contact</a>to place your order</p>
-        </div>
-      </div>
-    </div>
 
    <!--Bootstrap JS and dependencies-->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
