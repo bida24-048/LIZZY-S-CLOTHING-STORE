@@ -42,8 +42,42 @@
     <main class="container my-5">
         
         <p>You can place your order by contacting us anytime you are ready</p>
-        <p>Your order will be delivered within a month</p>
-         <img src="cart.jpg" alt="A cart" class="img-fluid rounded">
+
+         <div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <img src="tshirt.jpg" class="card-img-top" alt="Plain t-shirt">
+        <div class="card-body">
+          <h5 class="card-title">Plain T-shirt</h5>
+          <p class="card-text">Comfortable t-shirt for casual wear.</p>
+          <p class="price">P80.00</p>
+          <div class="size">
+            <label for="t-shirt">Size:</label>
+            <select id="t-shirt">
+              <option value="S">Small (S)</option>
+              <option value="M">Medium (M)</option>
+              <option value="L">Large (L)</option>
+              <option value="XL">Extra Large (XL)</option>
+            </select>
+          </div>
+          <button class="btn btn-primary place-your-order">Place your order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  // Add event listeners to all "Place your order" buttons
+  document.querySelectorAll('.place-your-order').forEach(button => {
+    button.addEventListener('click', () => {
+      alert('Your order is being processed!');
+        //Redirect to the new page
+        window.location.href="contact.html{queryString}";
+    });
+  });
+</script>
+
         
         <!--Bootstrap JS and dependencies-->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
