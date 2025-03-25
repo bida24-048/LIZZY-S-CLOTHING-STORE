@@ -42,6 +42,25 @@
     <main class="container my-5">
         
         <p>This is your clothing collection</p>
+        <script>
+  // Parse the query string from the URL
+  const params = new URLSearchParams(window.location.search);
+  const product = params.get('product');
+  const size = params.get('size');
+  const color = params.get('color');
+
+  // Display the product details
+  document.getElementById('cart-details').innerHTML = `
+    <h2>Added to Cart</h2>
+    <p>Product: ${product}</p>
+    <p>Size: ${size}</p>
+    <p>Color: ${color}</p>
+  `;
+</script>
+
+<!-- Add this in cart.html -->
+<div id="cart-details"></div>
+
         
 
          <div class="container">
