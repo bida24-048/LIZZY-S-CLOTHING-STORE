@@ -301,31 +301,39 @@
     </div>
   </div>
 </div>
-  // Add event listeners to all "Add to Cart" buttons
-  document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.<script>
-addEventListener('click', (e) => {
-      const card = e.target.closest('.card'); // Get the closest card element
-      const productTitle = card.querySelector('.card-title').innerText; // Get product name
-      const size = card.querySelector('select[id$="size"]').value; // Get selected size
-      const colorSelect = card.querySelector('select[id$="color"]'); // Check if color dropdown exists
-      const color = colorSelect ? colorSelect.value : 'Default Color'; // Get selected color or fallback
-      
-      // Create a query string to pass the product details to the new page
-      const queryString = `product=${encodeURIComponent(productTitle)}&size=${encodeURIComponent(size)}&color=${encodeURIComponent(color)}`;
+  <script>
+            // Initialize cart array to store added items
+            let cart = [];
+            let cartLink = document.getElementById('cart-link');
 
-      // Redirect to the new page with product details
-      window.location.href = `cart.html?${queryString}`;
-    });
-  });
-</script>
+            // Function to update the cart UI
+            function updateCartUI() {
+                cartLink.textContent = `Cart (${cart.length})`;
+            }
+
+            // Add event listeners to all "Add to Cart" buttons
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', () => {
+                    let productName = button.getAttribute('data-product');
+                    let productPrice = button.getAttribute('data-price');
+                    
+                    // Add the item to the cart
+                    cart.push({ name: productName, price: parseFloat(productPrice) });
+
+                    // Update the cart display
+                    updateCartUI();
+
+                    alert(`${productName} has been added to your cart!`);
+                });
+            });
+        </script>
+    </main>
+
+    <footer>
+        <p>&copy;2025 Lizzy Magano</p>
+    </footer>
+</body>
+</html>
 
   
 
-</main>
-
-<footer>
-<p>&copy;2025 Lizzy Magano</p>
-</footer>
-</body>
-</html>
