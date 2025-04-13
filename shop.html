@@ -70,6 +70,20 @@
         }
     </style>
 </head>
+    <div class="header">
+    <h1>Shop</h1>
+    <nav>
+        <a href="index.html" class="button">Home</a>
+        <a href="about.html" class=button">About</a>
+        <a href="sevice.html" class="button">Service</a>
+        <a href="cart.html" class="button">Cart</a>
+        <a href="shop.html" class="button">Shop</a>
+        <a href="contact.html" class="button">Contact</a>
+        <a href="feedback.html" class="button">Feedback</a>
+    </nav>
+    <button id="toggleCart" class="button">View Cart (0)</button>
+</div>
+
 <body>
     <div class="header">
         <h1>Shop</h1>
@@ -91,10 +105,17 @@
             { id: 7, name: "Men suits", price: 900, image: "men_suit.jpg", colors: ["Black", "Gray"], sizes: ["M", "L", "XL"] },
             { id: 8, name: "Men shorts", price: 300, image: "men_shorts.jpg", colors: ["Black", "Blue"], sizes: ["S", "M", "L"] }
         ];
+        const addToCart = (id) => {
+    const product = products.find((p) => p.id === id);
+    const selectedColor = document.getElementById(`color-${id}`).value;
+    const selectedSize = document.getElementById(`size-${id}`).value;
 
-        const cart = JSON.parse(localStorage.getItem("cart")) || [];
-        const shop = document.getElementById("shop");
-        const toggleCartButton = document.getElementById("toggleCart");
+    cart.push({ ...product, selectedColor, selectedSize });
+    localStorage.setItem("cart", JSON.stringify(cart)); // Save to localStorage
+    updateCartButton();
+};
+
+        
 
         const renderProducts = () => {
             shop.innerHTML = "";
