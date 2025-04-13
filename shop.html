@@ -89,14 +89,14 @@
 
     <script>
         const products = [
-            { id: 1, name: "Evening dress", price: 1000, image: "evening dress.jpg" },
-            { id: 2, name: "Vintage dress", price: 230, image: "dress.jpg" },
-            { id: 3, name: "Lady shorts", price: 100, image: "lady shorts.jpg" },
-            { id: 4, name: "Plain T-shirt", price: 80.0, image: "tshirt.jpg" },
-            { id: 5, name: "Vintage skirt", price: 500, image: "skirt.jpg" },
-            { id: 6, name: "Lady suit", price: 1200, image: "lady suit.jpg" },
-            { id: 7, name: "Men suits", price: 900, image: "men suit.jpg" },
-            { id: 8, name: "Men shorts", price: 300, image: "men shorts.jpg" }
+            { id: 1, name: "Evening dress", price: 1000, image: "evening dress.jpg", colors: ["Red", "Black", "Blue"], sizes: ["S", "M", "L"] },
+            { id: 2, name: "Vintage dress", price: 230, image: "dress.jpg", colors: ["Pink", "White"], sizes: ["M", "L"] },
+            { id: 3, name: "Lady shorts", price: 100, image: "lady shorts.jpg", colors: ["Yellow", "Green"], sizes: ["S", "M"] },
+            { id: 4, name: "Plain T-shirt", price: 80.0, image: "tshirt.jpg", colors: ["White", "Gray", "Black"], sizes: ["S", "M", "L", "XL"] },
+            { id: 5, name: "Vintage skirt", price: 500, image: "skirt.jpg", colors: ["Blue", "Black"], sizes: ["M", "L"] },
+            { id: 6, name: "Lady suit", price: 1200, image: "lady suit.jpg", colors: ["Beige", "Gray"], sizes: ["L", "XL"] },
+            { id: 7, name: "Men suits", price: 900, image: "men suit.jpg", colors: ["Black", "Gray"], sizes: ["M", "L", "XL"] },
+            { id: 8, name: "Men shorts", price: 300, image: "men shorts.jpg", colors: ["Khaki", "Blue"], sizes: ["S", "M", "L"] }
         ];
 
         const cart = [];
@@ -111,10 +111,21 @@
                 const card = document.createElement("div");
                 card.className = "card";
 
+                const colors = product.colors.map(color => `<option value="${color}">${color}</option>`).join("");
+                const sizes = product.sizes.map(size => `<option value="${size}">${size}</option>`).join("");
+
                 card.innerHTML = `
                     <img src="${product.image}" alt="${product.name}">
                     <h3>${product.name}</h3>
                     <p>Price: $${product.price.toFixed(2)}</p>
+                    <label for="color-${product.id}">Color:</label>
+                    <select id="color-${product.id}" class="product-color">
+                        ${colors}
+                    </select>
+                    <label for="size-${product.id}">Size:</label>
+                    <select id="size-${product.id}" class="product-size">
+                        ${sizes}
+                    </select>
                     <button class="button" onclick="addToCart(${product.id})">Add to Cart</button>
                 `;
 
@@ -137,6 +148,8 @@
                 cartItem.innerHTML = `
                     <h3>${item.name}</h3>
                     <p>Price: $${item.price.toFixed(2)}</p>
+                    <p>Color: ${item.selectedColor}</p>
+                    <p>Size: ${item.selectedSize}</p>
                 `;
 
                 cartItems.appendChild(cartItem);
@@ -145,7 +158,10 @@
 
         const addToCart = (id) => {
             const product = products.find((p) => p.id === id);
-            cart.push(product);
+            const selectedColor = document.getElementById(`color-${id}`).value;
+            const selectedSize = document.getElementById(`size-${id}`).value;
+
+            cart.push({ ...product, selectedColor, selectedSize });
             updateCartButton();
         };
 
