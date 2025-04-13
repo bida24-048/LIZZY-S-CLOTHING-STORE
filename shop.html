@@ -80,29 +80,20 @@
         <!-- Products will be dynamically added here -->
     </div>
 
-    <div id="cart" class="cart" style="display: none;">
-        <h2>Your Cart</h2>
-        <div id="cartItems">
-            <p>Your cart is empty.</p>
-        </div>
-    </div>
-
     <script>
         const products = [
-            { id: 1, name: "Evening dress", price: 1000, image: "evening dress.jpg", colors: ["Red", "Black", "Blue"], sizes: ["S", "M", "L"] },
-            { id: 2, name: "Vintage dress", price: 230, image: "dress.jpg", colors: ["Pink", "White"], sizes: ["M", "L"] },
-            { id: 3, name: "Lady shorts", price: 100, image: "lady shorts.jpg", colors: ["Yellow", "Green"], sizes: ["S", "M"] },
-            { id: 4, name: "Plain T-shirt", price: 80.0, image: "tshirt.jpg", colors: ["White", "Gray", "Black"], sizes: ["S", "M", "L", "XL"] },
-            { id: 5, name: "Vintage skirt", price: 500, image: "skirt.jpg", colors: ["Blue", "Black"], sizes: ["M", "L"] },
-            { id: 6, name: "Lady suit", price: 1200, image: "lady suit.jpg", colors: ["Beige", "Gray"], sizes: ["L", "XL"] },
-            { id: 7, name: "Men suits", price: 900, image: "men suit.jpg", colors: ["Black", "Gray"], sizes: ["M", "L", "XL"] },
-            { id: 8, name: "Men shorts", price: 300, image: "men shorts.jpg", colors: ["Khaki", "Blue"], sizes: ["S", "M", "L"] }
+            { id: 1, name: "Evening dress", price: 1000, image: "evening_dress.jpg", colors: ["Red", "Black", "Blue"], sizes: ["S", "M", "L"] },
+            { id: 2, name: "Vintage dress", price: 230, image: "vintage_dress.jpg", colors: ["Pink", "White"], sizes: ["M", "L"] },
+            { id: 3, name: "Lady shorts", price: 100, image: "lady_shorts.jpg", colors: ["Yellow", "Green"], sizes: ["S", "M"] },
+            { id: 4, name: "Plain T-shirt", price: 80, image: "plain_tshirt.jpg", colors: ["White", "Gray", "Black"], sizes: ["S", "M", "L", "XL"] },
+            { id: 5, name: "Vintage skirt", price: 500, image: "vintage_skirt.jpg", colors: ["Blue", "Black"], sizes: ["M", "L"] },
+            { id: 6, name: "Lady suit", price: 1200, image: "lady_suit.jpg", colors: ["Blue", "Gray"], sizes: ["L", "XL"] },
+            { id: 7, name: "Men suits", price: 900, image: "men_suit.jpg", colors: ["Black", "Gray"], sizes: ["M", "L", "XL"] },
+            { id: 8, name: "Men shorts", price: 300, image: "men_shorts.jpg", colors: ["Black", "Blue"], sizes: ["S", "M", "L"] }
         ];
 
-        const cart = [];
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
         const shop = document.getElementById("shop");
-        const cartSection = document.getElementById("cart");
-        const cartItems = document.getElementById("cartItems");
         const toggleCartButton = document.getElementById("toggleCart");
 
         const renderProducts = () => {
@@ -117,71 +108,4 @@
                 card.innerHTML = `
                     <img src="${product.image}" alt="${product.name}">
                     <h3>${product.name}</h3>
-                    <p>Price: $${product.price.toFixed(2)}</p>
-                    <label for="color-${product.id}">Color:</label>
-                    <select id="color-${product.id}" class="product-color">
-                        ${colors}
-                    </select>
-                    <label for="size-${product.id}">Size:</label>
-                    <select id="size-${product.id}" class="product-size">
-                        ${sizes}
-                    </select>
-                    <button class="button" onclick="addToCart(${product.id})">Add to Cart</button>
-                `;
-
-                shop.appendChild(card);
-            });
-        };
-
-        const renderCart = () => {
-            cartItems.innerHTML = "";
-
-            if (cart.length === 0) {
-                cartItems.innerHTML = "<p>Your cart is empty.</p>";
-                return;
-            }
-
-            cart.forEach((item) => {
-                const cartItem = document.createElement("div");
-                cartItem.className = "cart-item";
-
-                cartItem.innerHTML = `
-                    <h3>${item.name}</h3>
-                    <p>Price: $${item.price.toFixed(2)}</p>
-                    <p>Color: ${item.selectedColor}</p>
-                    <p>Size: ${item.selectedSize}</p>
-                `;
-
-                cartItems.appendChild(cartItem);
-            });
-        };
-
-        const addToCart = (id) => {
-            const product = products.find((p) => p.id === id);
-            const selectedColor = document.getElementById(`color-${id}`).value;
-            const selectedSize = document.getElementById(`size-${id}`).value;
-
-            cart.push({ ...product, selectedColor, selectedSize });
-            updateCartButton();
-        };
-
-        const updateCartButton = () => {
-            toggleCartButton.textContent = `View Cart (${cart.length})`;
-        };
-
-        toggleCartButton.addEventListener("click", () => {
-            if (shop.style.display === "none") {
-                shop.style.display = "grid";
-                cartSection.style.display = "none";
-                toggleCartButton.textContent = `View Cart (${cart.length})`;
-            } else {
-                shop.style.display = "none";
-                cartSection.style.display = "block";
-                renderCart();
-            }
-        });
-
-        renderProducts();
-    </script>
-</body>
-</html>
+                    <p>Price:
